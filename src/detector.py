@@ -41,10 +41,10 @@ def score_email(sender, subject, body):
     found_domains = []
     shorteners = ["bit.ly", "tinyurl.com", "goo.gl", "ow.ly", "t.co", "ow.ly", "is.gd", "buff.ly", "adf.ly"]
     trusted_domains = {
-        "amazon": "amazon.com",
-        "paypal": "paypal.com",
-        "microsoft": "microsoft.com",
-        "google": "google.com"
+        "amazon": ["amazon.com", "amazonaws.com"],
+        "paypal": ["paypal.com", "paypal.me"],
+        "microsoft": ["microsoft.com", "outlook.com", "live.com"],
+        "google": ["google.com", "gmail.com", "googleapis.com"]
     }
     
     # TODO: We'll add detection rules here, one by one!
@@ -70,8 +70,8 @@ def score_email(sender, subject, body):
         })
 
     domain = sender.split("@")[-1].lower()
-    for brand, real_domain in trusted_domains.items():
-        if brand in domain and domain != real_domain:
+    for brand, real_domains in trusted_domains.items():
+        if brand in domain and domain not in real_domains:
             found_domains.append(brand)
 
     if found_domains:
