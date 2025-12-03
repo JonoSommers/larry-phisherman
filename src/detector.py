@@ -37,8 +37,15 @@ def score_email(sender, subject, body):
     """
     # We'll collect all indicators that fire
     indicators = []
-    found = []
+    found_shorteners = []
+    found_domains = []
     shorteners = ["bit.ly", "tinyurl.com", "goo.gl", "ow.ly", "t.co", "ow.ly", "is.gd", "buff.ly", "adf.ly"]
+    trusted_domains = {
+        "amazon": ["amazon.com", "amazonaws.com"],
+        "paypal": ["paypal.com", "paypal.me"],
+        "microsoft": ["microsoft.com", "outlook.com", "live.com"],
+        "google": ["google.com", "gmail.com", "googleapis.com"]
+    }
     
     # TODO: We'll add detection rules here, one by one!
     # Each rule will check for something suspicious and 
@@ -53,14 +60,30 @@ def score_email(sender, subject, body):
     
     for item in shorteners:
         if item in body.lower():
-            found.append(item)
-    if found:
+            found_shorteners.append(item)
+    if found_shorteners:
         indicators.append({
             "name" : "Common URL Shortener",
             "description": "The email subject or body contains a URL shortener commonly used by scammers.",
-            "shorteners detected": found,
+            "shorteners detected": found_shorteners,
+            "points": 30
+        })
+
+    domain = sender.split("@")[-1].lower()
+    for brand, real_domains in trusted_domains.items():
+        if brand in domain and domain not in real_domains:
+            found_domains.append(brand)
+
+    if found_domains:
+        indicators.append({
+            "name" : "Suspicious Domain Sender",
+            "description": "The domain sender contains a suspicious extenstion connomly used by scammers.",
+            "suspicions domain": sender.split("@")[-1],
+            "brands impersonated": found_domains,
             "points": 40
-        })    
+        })
+
+
     # Calculate total score from all indicators
     total_score = sum(indicator["points"] for indicator in indicators)
     
@@ -77,7 +100,7 @@ def score_email(sender, subject, body):
 if __name__ == "__main__":
     # Quick test
     result = score_email(
-        sender="test@example.com",
+        sender="test@amazon-secure.com",
         subject="URGENT: Your account needs attention.",
         body="Just a friendly email! Use this link: abcdefg.bit.ly or abcdefg.tinyurl.com"
     )
