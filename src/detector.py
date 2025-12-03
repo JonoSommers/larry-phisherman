@@ -37,6 +37,8 @@ def score_email(sender, subject, body):
     """
     # We'll collect all indicators that fire
     indicators = []
+    found = []
+    shorteners = ["bit.ly", "tinyurl.com", "goo.gl", "ow.ly", "t.co", "ow.ly", "is.gd", "buff.ly", "adf.ly"]
     
     # TODO: We'll add detection rules here, one by one!
     # Each rule will check for something suspicious and 
@@ -44,11 +46,21 @@ def score_email(sender, subject, body):
     
     if "urgent" in subject.lower():
         indicators.append({
-            "name": "Urgent Subject",
-            "description": "The email subject contains the word 'urgent', which is commonly used in phishing attempts to create a sense of urgency.",
+            "name": "Common Scammer Buzzwords",
+            "description": "The email subject or body contains buzzwords commonly used by scammers.",
             "points": 20
         })
     
+    for item in shorteners:
+        if item in body.lower():
+            found.append(item)
+    if found:
+        indicators.append({
+            "name" : "Common URL Shortener",
+            "description": "The email subject or body contains a URL shortener commonly used by scammers.",
+            "shorteners detected": found,
+            "points": 40
+        })    
     # Calculate total score from all indicators
     total_score = sum(indicator["points"] for indicator in indicators)
     
@@ -66,7 +78,7 @@ if __name__ == "__main__":
     # Quick test
     result = score_email(
         sender="test@example.com",
-        subject="URGENT: Your account needs attention",
-        body="Just a friendly email!"
+        subject="URGENT: Your account needs attention.",
+        body="Just a friendly email! Use this link: abcdefg.bit.ly or abcdefg.tinyurl.com"
     )
     print(result)
