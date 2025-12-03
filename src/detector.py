@@ -10,11 +10,11 @@ def get_threat_level(score):
     """
     if score >= 90:
         return "critical"       # Auto-block territory
-    elif score >= 76:
+    elif score >= 70:
         return "dangerous"      # High confidence phishing
-    elif score >= 51:
+    elif score >= 50:
         return "likely_phishing"
-    elif score >= 21:
+    elif score >= 20:
         return "suspicious"
     else:
         return "safe"
@@ -42,6 +42,13 @@ def score_email(sender, subject, body):
     # Each rule will check for something suspicious and 
     # append to the indicators list if triggered.
     
+    if "urgent" in subject.lower():
+        indicators.append({
+            "name": "Urgent Subject",
+            "description": "The email subject contains the word 'urgent', which is commonly used in phishing attempts to create a sense of urgency.",
+            "points": 20
+        })
+    
     # Calculate total score from all indicators
     total_score = sum(indicator["points"] for indicator in indicators)
     
@@ -59,7 +66,7 @@ if __name__ == "__main__":
     # Quick test
     result = score_email(
         sender="test@example.com",
-        subject="Hello",
+        subject="URGENT: Your account needs attention",
         body="Just a friendly email!"
     )
     print(result)
