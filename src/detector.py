@@ -46,6 +46,13 @@ def score_email(sender, subject, body):
         "microsoft": ["microsoft.com", "outlook.com", "live.com"],
         "google": ["google.com", "gmail.com", "googleapis.com"]
     }
+    look_alikes = {
+        "0": "o",
+        "1": "l",
+        "3": "e",
+        "@": "a",
+        "5": "s"
+    }
     
     # TODO: We'll add detection rules here, one by one!
     # Each rule will check for something suspicious and 
@@ -70,8 +77,12 @@ def score_email(sender, subject, body):
         })
 
     domain = sender.split("@")[-1].lower()
+    normalized_domain = domain
+
+    for fake_char, real_char in look_alikes.items():
+        normalized_domain = normalized_domain.replace(fake_char, real_char)
     for brand, real_domains in trusted_domains.items():
-        if brand in domain and domain not in real_domains:
+        if brand in normalized_domain and domain not in real_domains:
             found_domains.append(brand)
 
     if found_domains:
@@ -100,7 +111,7 @@ def score_email(sender, subject, body):
 if __name__ == "__main__":
     # Quick test
     result = score_email(
-        sender="test@amazon-secure.com",
+        sender="test@amaz0n.com",
         subject="URGENT: Your account needs attention.",
         body="Just a friendly email! Use this link: abcdefg.bit.ly or abcdefg.tinyurl.com"
     )
