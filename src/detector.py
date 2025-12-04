@@ -39,7 +39,9 @@ def score_email(sender, subject, body):
     indicators = []
     found_shorteners = []
     found_domains = []
+    found_files = []
     shorteners = ["bit.ly", "tinyurl.com", "goo.gl", "ow.ly", "t.co", "ow.ly", "is.gd", "buff.ly", "adf.ly"]
+    extensions = [".exe", ".zip", ".rar", ".js", ".vbs", ".bat", ".cmd", ".scr", ".msi"]
     trusted_domains = {
         "amazon": ["amazon.com", "amazonaws.com"],
         "paypal": ["paypal.com", "paypal.me"],
@@ -73,7 +75,7 @@ def score_email(sender, subject, body):
             "name" : "Common URL Shortener",
             "description": "The email subject or body contains a URL shortener commonly used by scammers.",
             "shorteners detected": found_shorteners,
-            "points": 30
+            "points": 20
         })
 
     domain = sender.split("@")[-1].lower()
@@ -91,8 +93,20 @@ def score_email(sender, subject, body):
             "description": "The domain sender contains a suspicious extenstion connomly used by scammers.",
             "suspicions domain": sender.split("@")[-1],
             "brands impersonated": found_domains,
-            "points": 40
+            "points": 30
         })
+
+    for item in extensions:
+        if item in body.lower():
+            found_files.append(item)
+            
+    if found_files:
+        indicators.append({
+        "name" : "Dangerous File Type",
+        "description": "The email subject or body contains a dangerous file extension commonly used by scammers.",
+        "dangerous files found": found_files,
+        "points": 30
+    })
 
 
     # Calculate total score from all indicators
@@ -113,6 +127,6 @@ if __name__ == "__main__":
     result = score_email(
         sender="test@amaz0n.com",
         subject="URGENT: Your account needs attention.",
-        body="Just a friendly email! Use this link: abcdefg.bit.ly or abcdefg.tinyurl.com"
+        body="Just a friendly email! Use this link: abcdefg.bit.ly or abcdefg.tinyurl.com and download this file 1234.rar"
     )
     print(result)
