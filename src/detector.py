@@ -1,5 +1,6 @@
 # detector.py
 # Core phishing detection engine for Larry Phisherman
+import re
 
 def get_threat_level(score):
     """
@@ -55,6 +56,8 @@ def score_email(sender, subject, body):
         "@": "a",
         "5": "s"
     }
+    ip_pattern = r"\d+\.\d+\.\d+\.\d+"
+    tld_pattern = r"http[s]?://[^\s]+?\.(?:xyz|ru|tk|top|click)"
     
     # TODO: We'll add detection rules here, one by one!
     # Each rule will check for something suspicious and 
@@ -64,7 +67,19 @@ def score_email(sender, subject, body):
         indicators.append({
             "name": "Common Scammer Buzzwords",
             "description": "The email subject or body contains buzzwords commonly used by scammers.",
-            "points": 20
+            "points": 10
+        })
+
+    ip_matches = re.findall(ip_pattern, body.lower())
+    tld_matches = re.findall(tld_pattern, body.lower())
+    pattern_matches = ip_matches + tld_matches
+    
+    if pattern_matches:
+        indicators.append({
+            "name": "Suspicious Link Pattern",
+            "description": "The email contains a link with a suspicious pattern commonly used by scammers.",
+            "suspicious pattern": pattern_matches,
+            "points": 15
         })
     
     for item in shorteners:
@@ -93,7 +108,7 @@ def score_email(sender, subject, body):
             "description": "The domain sender contains a suspicious extenstion connomly used by scammers.",
             "suspicions domain": sender.split("@")[-1],
             "brands impersonated": found_domains,
-            "points": 30
+            "points": 25
         })
 
     for item in extensions:
@@ -127,6 +142,6 @@ if __name__ == "__main__":
     result = score_email(
         sender="test@amaz0n.com",
         subject="URGENT: Your account needs attention.",
-        body="Just a friendly email! Use this link: abcdefg.bit.ly or abcdefg.tinyurl.com and download this file 1234.rar"
+        body="Visit http://192.168.1.1/login and http://amazon-verify.xyz now!"
     )
     print(result)

@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 46cf6fd232663e614b661a0aa35f675ea526ec4c Jono Sommers <jonosommers95@gmail.com> 1764874588 -0600	branch: Created from HEAD
+46cf6fd232663e614b661a0aa35f675ea526ec4c b0a25621f4ddbe0702593d9a07859622933eca4c Jono Sommers <jonosommers95@gmail.com> 1764874602 -0600	commit: bad file detection built
+b0a25621f4ddbe0702593d9a07859622933eca4c 92eaa572c4307b678fc62cfd1b1b26d233eed4b6 Jono Sommers <jonosommers95@gmail.com> 1764874826 -0600	commit: fixed indentation issue that cuased scores of over 200

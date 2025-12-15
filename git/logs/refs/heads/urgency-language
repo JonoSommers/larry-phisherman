@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 81f1ebdd08e7bf506821d6585a1c6beb82415f76 Jono Sommers <jonosommers95@gmail.com> 1764785110 -0600	branch: Created from HEAD
+81f1ebdd08e7bf506821d6585a1c6beb82415f76 de32b30e7448450eb318534988a1ba7bb0a9507e Jono Sommers <jonosommers95@gmail.com> 1764785163 -0600	commit: detector.py foundation with get_threat_level() and score_email() skeleton. Designed return data structure.
+de32b30e7448450eb318534988a1ba7bb0a9507e 7a8782d18d13ce9c3cfb2444dfa48b715faf08ec Jono Sommers <jonosommers95@gmail.com> 1764795737 -0600	commit: updated scores. detection rule for urgency language built and working.
+7a8782d18d13ce9c3cfb2444dfa48b715faf08ec 340734d746878fc60512c7ef7e5267cf2313d858 Jono Sommers <jonosommers95@gmail.com> 1764797953 -0600	commit: updated buzzword detection. built url shortener detection and is working.
