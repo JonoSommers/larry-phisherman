@@ -1,0 +1,25 @@
+0000000000000000000000000000000000000000 57632729827c5dfe76f0b88e43962621c0ccbfc6 Dr Pilk <jonos@Jonos_PC.(none)> 1764779684 -0600	clone: from github.com:JonoSommers/larry-phisherman.git
+57632729827c5dfe76f0b88e43962621c0ccbfc6 57632729827c5dfe76f0b88e43962621c0ccbfc6 Dr Pilk <jonos@Jonos_PC.(none)> 1764782572 -0600	checkout: moving from main to main
+57632729827c5dfe76f0b88e43962621c0ccbfc6 81f1ebdd08e7bf506821d6585a1c6beb82415f76 Jono Sommers <jonosommers95@gmail.com> 1764783149 -0600	commit: initial commit
+81f1ebdd08e7bf506821d6585a1c6beb82415f76 81f1ebdd08e7bf506821d6585a1c6beb82415f76 Jono Sommers <jonosommers95@gmail.com> 1764785110 -0600	checkout: moving from main to urgency-language
+81f1ebdd08e7bf506821d6585a1c6beb82415f76 de32b30e7448450eb318534988a1ba7bb0a9507e Jono Sommers <jonosommers95@gmail.com> 1764785163 -0600	commit: detector.py foundation with get_threat_level() and score_email() skeleton. Designed return data structure.
+de32b30e7448450eb318534988a1ba7bb0a9507e 7a8782d18d13ce9c3cfb2444dfa48b715faf08ec Jono Sommers <jonosommers95@gmail.com> 1764795737 -0600	commit: updated scores. detection rule for urgency language built and working.
+7a8782d18d13ce9c3cfb2444dfa48b715faf08ec 340734d746878fc60512c7ef7e5267cf2313d858 Jono Sommers <jonosommers95@gmail.com> 1764797953 -0600	commit: updated buzzword detection. built url shortener detection and is working.
+340734d746878fc60512c7ef7e5267cf2313d858 81f1ebdd08e7bf506821d6585a1c6beb82415f76 Jono Sommers <jonosommers95@gmail.com> 1764798191 -0600	checkout: moving from urgency-language to main
+81f1ebdd08e7bf506821d6585a1c6beb82415f76 574db8be3818364cdb6df357f00ed83c1a658b96 Jono Sommers <jonosommers95@gmail.com> 1764798196 -0600	pull origin main: Fast-forward
+574db8be3818364cdb6df357f00ed83c1a658b96 574db8be3818364cdb6df357f00ed83c1a658b96 Jono Sommers <jonosommers95@gmail.com> 1764799016 -0600	checkout: moving from main to sus-sender-domain
+574db8be3818364cdb6df357f00ed83c1a658b96 6c2bb2ed76d762952cf08918560dc52104b9ef8e Jono Sommers <jonosommers95@gmail.com> 1764803458 -0600	commit: built out suspicious domain detection. detection is working.
+6c2bb2ed76d762952cf08918560dc52104b9ef8e 1a9820b631898e8dae597be346069158bffcd46a Jono Sommers <jonosommers95@gmail.com> 1764803875 -0600	commit: fixed a bug that would flag legit domains like amazonaws.com and more.
+1a9820b631898e8dae597be346069158bffcd46a 574db8be3818364cdb6df357f00ed83c1a658b96 Jono Sommers <jonosommers95@gmail.com> 1764804013 -0600	checkout: moving from sus-sender-domain to main
+574db8be3818364cdb6df357f00ed83c1a658b96 a73367ee941e8edf703bddc9d3bb67737e389a85 Jono Sommers <jonosommers95@gmail.com> 1764804017 -0600	pull origin main: Fast-forward
+a73367ee941e8edf703bddc9d3bb67737e389a85 a73367ee941e8edf703bddc9d3bb67737e389a85 Jono Sommers <jonosommers95@gmail.com> 1764804097 -0600	checkout: moving from main to character-look-alike-detection
+a73367ee941e8edf703bddc9d3bb67737e389a85 f7f29510a6ee940f0cc5e61c674cecdae334dac6 Jono Sommers <jonosommers95@gmail.com> 1764873496 -0600	commit: character look alike detection complete.
+f7f29510a6ee940f0cc5e61c674cecdae334dac6 a73367ee941e8edf703bddc9d3bb67737e389a85 Jono Sommers <jonosommers95@gmail.com> 1764873737 -0600	checkout: moving from character-look-alike-detection to main
+a73367ee941e8edf703bddc9d3bb67737e389a85 46cf6fd232663e614b661a0aa35f675ea526ec4c Jono Sommers <jonosommers95@gmail.com> 1764873742 -0600	pull origin main: Fast-forward
+46cf6fd232663e614b661a0aa35f675ea526ec4c 46cf6fd232663e614b661a0aa35f675ea526ec4c Jono Sommers <jonosommers95@gmail.com> 1764874588 -0600	checkout: moving from main to bad-file-ext
+46cf6fd232663e614b661a0aa35f675ea526ec4c b0a25621f4ddbe0702593d9a07859622933eca4c Jono Sommers <jonosommers95@gmail.com> 1764874602 -0600	commit: bad file detection built
+b0a25621f4ddbe0702593d9a07859622933eca4c 92eaa572c4307b678fc62cfd1b1b26d233eed4b6 Jono Sommers <jonosommers95@gmail.com> 1764874826 -0600	commit: fixed indentation issue that cuased scores of over 200
+92eaa572c4307b678fc62cfd1b1b26d233eed4b6 46cf6fd232663e614b661a0aa35f675ea526ec4c Jono Sommers <jonosommers95@gmail.com> 1764875013 -0600	checkout: moving from bad-file-ext to main
+46cf6fd232663e614b661a0aa35f675ea526ec4c f555df99d619dfaa29e6268daf5b2fae8642c861 Jono Sommers <jonosommers95@gmail.com> 1764875017 -0600	pull origin main: Fast-forward
+f555df99d619dfaa29e6268daf5b2fae8642c861 f555df99d619dfaa29e6268daf5b2fae8642c861 Jono Sommers <jonosommers95@gmail.com> 1764875028 -0600	checkout: moving from main to sus-link-patterns
+f555df99d619dfaa29e6268daf5b2fae8642c861 e0c42d95d1dfbb420cb3b5920fa40ff9bdc06bea Jono Sommers <jonosommers95@gmail.com> 1764875957 -0600	commit: ip link detection

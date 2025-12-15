@@ -1,0 +1,24 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = git@github.com:JonoSommers/larry-phisherman.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+	vscode-merge-base = origin/main
+[branch "urgency-language"]
+	vscode-merge-base = origin/main
+[branch "sus-sender-domain"]
+	vscode-merge-base = origin/main
+[branch "character-look-alike-detection"]
+	vscode-merge-base = origin/main
+[branch "bad-file-ext"]
+	vscode-merge-base = origin/main
+[branch "sus-link-patterns"]
+	vscode-merge-base = origin/main
