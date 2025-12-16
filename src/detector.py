@@ -89,17 +89,22 @@ def score_email(sender, subject, body):
 
     # We'll collect all indicators that fire
     indicators = []
+    indicators.extend(check_for_urgency(subject_lower))
+
     found_shorteners = []
     found_brands = []
     found_files = []
 
     # --- Rule 1: Urgency / scammy buzzwords in subject ------------------------
+def check_for_urgency(subject_lower):
+    found_indicators = []
     if "urgent" in subject_lower:
-        indicators.append({
+        found_indicators.append({
             "name": "Common Scammer Buzzwords",
             "description": "The email subject contains buzzwords commonly used by scammers (e.g., 'urgent').",
             "points": 10,
         })
+    return found_indicators
 
     # --- Rule 2: Suspicious link patterns (IP + sketchy TLDs) -----------------
     ip_matches = re.findall(IP_PATTERN, body_lower)
